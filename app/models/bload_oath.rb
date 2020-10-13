@@ -10,4 +10,8 @@ class BloadOath
     @initiation_date = DateTime.now.strftime("%F")
     @@all << self
   end
+
+  def self.all
+    @@all
+  end
 end

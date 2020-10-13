@@ -7,7 +7,7 @@ class Cult
     @location = location
     @founding_year = founding_year
     @slogan = slogan
-    @@all < all
+    @@all << self
   end
 
   def recruit_follower(follower)
@@ -25,7 +25,7 @@ class Cult
   end
 
   def self.find_by_name(name)
-    self.all.select { |cult| cult.name == name }
+    self.all.find { |cult| cult.name == name }
   end
 
   def self.find_by_location(location)
@@ -33,6 +33,6 @@ class Cult
   end
 
   def self.find_by_founding_year(year)
-    self.all.select { |cult| cult.year == year }
+    self.all.select { |cult| cult.founding_year == year }
   end
 end
