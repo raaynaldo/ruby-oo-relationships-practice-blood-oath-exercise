@@ -12,10 +12,12 @@ class Cult
 
   def recruit_follower(follower)
     # takes in an argument of a Follower instance and adds them to this cult's list of followers
+    BloadOath.new(self, follower)
   end
 
   def cult_population
     # returns an Integer that is the number of followers in this cult
+    BloadOath.all.count { |bo| bo.cult == self }
   end
 
   def self.all

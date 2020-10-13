@@ -11,10 +11,12 @@ class Follower
 
   def cults
     # returns an Array of this follower's cults
+    BloadOath.all.select{|bo| bo.follower == self}.map{|bo| bo.cult}
   end
 
-  def join_cult
+  def join_cult(cult)
     # takes in an argument of a Cult instance and adds this follower to the cult's list of followers
+    BloadOath.new(cult, self)
   end
 
   def self.all
