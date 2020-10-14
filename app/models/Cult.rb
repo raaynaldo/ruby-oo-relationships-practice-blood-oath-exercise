@@ -1,5 +1,5 @@
 class Cult
-  attr_reader :name, :location, :founding_year, :slogan
+  attr_reader :name, :location, :founding_year, :slogan, :minimum_age
   @@all = []
 
   def initialize(name, location, founding_year, slogan)
@@ -7,12 +7,17 @@ class Cult
     @location = location
     @founding_year = founding_year
     @slogan = slogan
+    @minimum_age = 20
     @@all << self
   end
 
   def recruit_follower(follower)
     # takes in an argument of a Follower instance and adds them to this cult's list of followers
-    BloadOath.new(self, follower)
+    if follower.age >= self.minimum_age
+      BloadOath.new(self, follower)
+    else
+      puts "Sorry #{follower.name}, you are too young."
+    end
   end
 
   def cult_population

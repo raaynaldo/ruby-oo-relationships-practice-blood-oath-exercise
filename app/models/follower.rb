@@ -16,11 +16,21 @@ class Follower
 
   def join_cult(cult)
     # takes in an argument of a Cult instance and adds this follower to the cult's list of followers
-    BloadOath.new(cult, self)
+    if self.age >= cult.minimum_age
+        BloadOath.new(cult, self)
+    else
+        puts "Sorry #{self.name}, you are too young."
+    end
   end
 
   def my_cults_slogans
     cults.each { |cult| puts cult.slogan }
+  end
+
+  def fellow_cult_members
+    members = []
+    self.cults.each { |cult| members += cult.followers }
+    members.uniq
   end
 
   def self.all
